@@ -14,7 +14,7 @@ print("Please Input Your Display Name For This Session\n------------------------
 displayName = re.sub('[^A-Za-z0-9]+', ' ', input())
 
 while(True):
-    newMsg = re.sub('[^A-Za-z0-9]+', ' ', input())
+    newMsg = re.sub('[^A-Za-z0-9]+', ' ', input("~ "))
     
     chatLog.append(displayName + "@" + socket.getfqdn("localhost") + " : " + newMsg)
     os.system("cls")
