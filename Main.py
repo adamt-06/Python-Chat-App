@@ -1,4 +1,6 @@
-import hashlib, socket, sys, re, subprocess, hmac, os
+import hashlib, socket, sys, re, subprocess, hmac, os, pyfiglet, threading
+from array import array
+from datetime import datetime
 
 openedFile = open(__file__,"r",encoding='utf-8')
 readFile = openedFile.read()
@@ -15,8 +17,13 @@ displayName = re.sub('[^A-Za-z0-9]+', ' ', input())
 
 while(True):
     newMsg = re.sub('[^A-Za-z0-9]+', ' ', input("~ "))
-    
     chatLog.append(displayName + "@" + socket.getfqdn("localhost") + " : " + newMsg)
+
     os.system("cls")
+
+    # Displaying the title banner
+    ascii_banner = pyfiglet.figlet_format("Python Chat App")
+    print(ascii_banner)
+
     for i in range(len(chatLog)):
         print(chatLog[i-1])
