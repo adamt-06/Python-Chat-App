@@ -1,6 +1,4 @@
-import hashlib, socket, sys, re, subprocess, hmac, os, pyfiglet, threading
-from array import array
-from datetime import datetime
+import hashlib, socket, sys, re, subprocess, hmac, os, pyfiglet, threading, array, datetime
 
 openedFile = open(__file__,"r",encoding='utf-8')
 readFile = openedFile.read()
