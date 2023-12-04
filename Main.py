@@ -12,7 +12,7 @@ print(progHash)
 
 chatLog = []
 
-print("Please Input Your Display Name For This Session\n-----------------------------------------------")
+print("Please Input Your Display Name For This Session\n"+("-"*50))
 displayName = re.sub('[^A-Za-z0-9]+', ' ', input())
 
 while(True):
