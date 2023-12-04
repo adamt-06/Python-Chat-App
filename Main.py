@@ -1,4 +1,7 @@
 import hashlib, socket, sys, re, subprocess, hmac, os, pyfiglet, threading, array, datetime
+from colorama import Fore, Back, Style, init
+
+init()
 
 openedFile = open(__file__,"r",encoding='utf-8')
 readFile = openedFile.read()
@@ -15,7 +18,7 @@ displayName = re.sub('[^A-Za-z0-9]+', ' ', input())
 
 while(True):
     newMsg = re.sub('[^A-Za-z0-9]+', ' ', input("~ "))
-    chatLog.append(displayName + "@" + socket.getfqdn("localhost") + " : " + newMsg)
+    chatLog.append(Fore.BLUE + displayName + "@" + socket.getfqdn("localhost") + " : "+ Fore.RESET + newMsg)
 
     os.system("cls")
 
