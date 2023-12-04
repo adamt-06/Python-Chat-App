@@ -1,5 +1,13 @@
-import hashlib, socket, sys, re, subprocess, hmac, os, pyfiglet, threading, array, datetime
+import hashlib, socket, sys, re, subprocess, hmac, os, threading, array, datetime
+
+if os.name == 'nt':
+    os.system('py -m pip install "pyfiglet~=1.0.2"')
+# for mac and linux(here, os.name is 'posix')
+else:
+    os.system('sudo python3 -m pip install "pyfiglet~=1.0.2"')
+
 from colorama import Fore, Back, Style, init
+from pyfiglet import Figlet
 
 init()
 
@@ -72,7 +80,12 @@ while(True):
     newMsg = re.sub('[^A-Za-z0-9]+', ' ', input("~ "))
     chatLog.append(Fore.BLUE + displayName + "@" + socket.getfqdn("localhost") + " : "+ Fore.RESET + newMsg)
 
-    os.system("cls")
+    if os.name == 'nt':
+        os.system('cls')
+ 
+    # for mac and linux(here, os.name is 'posix')
+    else:
+        os.system('clear')
 
     # Displaying the title banner
     ascii_banner = pyfiglet.figlet_format("P2Python")
