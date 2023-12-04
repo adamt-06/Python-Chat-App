@@ -14,7 +14,15 @@ print(progHash)
 chatLog = []
 
 print("Please Input Your Display Name For This Session\n"+("-"*50))
-displayName = re.sub('[^A-Za-z0-9]+', ' ', input())
+displayName = re.sub('[^A-Za-z0-9]+', '-', input("~ "))
+
+class Server:
+    def start():
+        return "Started Server"
+    
+class Client:
+    def connect():
+        return "Connected To Server"
 
 while(True):
     newMsg = re.sub('[^A-Za-z0-9]+', ' ', input("~ "))
