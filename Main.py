@@ -22,7 +22,7 @@ while(True):
     os.system("cls")
 
     # Displaying the title banner
-    ascii_banner = pyfiglet.figlet_format("Python Chat App")
+    ascii_banner = pyfiglet.figlet_format("P2Python")
     print(ascii_banner)
 
     for i in range(len(chatLog)):
