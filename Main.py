@@ -1,26 +1,13 @@
 import hashlib, socket, sys, re, subprocess, hmac, os, threading, array, datetime
 
 if os.name == 'nt':
-    os.system('py -m pip install "pyfiglet~=1.0.2"')
+    os.system('py -m pip install "pyfiglet~=1.0.2" -q -q -q')
 # for mac and linux(here, os.name is 'posix')
 else:
-    os.system('sudo python3 -m pip install "pyfiglet~=1.0.2"')
+    os.system('sudo python3 -m pip install "pyfiglet~=1.0.2" -q -q -q')
 
 from colorama import Fore, Back, Style, init
-from pyfiglet import Figlet
-
-init()
-
-openedFile = open(__file__,"r",encoding='utf-8')
-readFile = openedFile.read()
-progHash = hashlib.sha256(str(readFile).encode('utf-8')).hexdigest()
-
-print(progHash)
-
-chatLog = []
-
-print("Please Input Your Display Name For This Session\n"+("-"*50))
-displayName = re.sub('[^A-Za-z0-9]+', '-', input("~ "))
+import pyfiglet
 
 class Server:
     def __init__(self, address: str, port: int):
@@ -46,18 +33,18 @@ class Server:
             client_thread.start()
 
     def handle_client(self, client_IO):
- 
+
         while True:
             try:
                 # Receive data from the client
                 data = client_IO.recv(1024).decode()
- 
+
                 if not data:
                     self.clients.remove(client_IO)
                     break
- 
+
                 self.broadcast(data, client_IO)
- 
+
             except ConnectionResetError:
                 self.clients.remove(client_IO)
                 break
@@ -75,21 +62,35 @@ class Server:
 class Client:
     def connect():
         return "Connected To Server"
+    
+init()
+
+openedFile = open(__file__,"r",encoding='utf-8')
+readFile = openedFile.read()
+progHash = hashlib.sha256(str(readFile).encode('utf-8')).hexdigest()
+
+print(progHash)
+
+chatLog = []
+
+print("Please Input Your Display Name For This Session\n"+("-"*50))
+displayName = re.sub('[^A-Za-z0-9]+', '-', input("~ "))
+
+
 
 while(True):
-    newMsg = re.sub('[^A-Za-z0-9]+', ' ', input("~ "))
-    chatLog.append(Fore.BLUE + displayName + "@" + socket.getfqdn("localhost") + " : "+ Fore.RESET + newMsg)
 
     if os.name == 'nt':
         os.system('cls')
- 
     # for mac and linux(here, os.name is 'posix')
     else:
         os.system('clear')
 
     # Displaying the title banner
-    ascii_banner = pyfiglet.figlet_format("P2Python")
-    print(ascii_banner)
+    print(Fore.GREEN + pyfiglet.figlet_format("P2Python") + "\n----------------------------------------------\nSay hi")
 
     for i in range(len(chatLog)):
-        print(chatLog[i-1])
+        print(chatLog[i])
+
+    newMsg = re.sub('[^A-Za-z0-9]+', ' ', input("~ "))
+    chatLog.insert(len(chatLog), Fore.GREEN + displayName + "@" + socket.getfqdn("localhost") + " : "+ Fore.LIGHTBLACK_EX + newMsg)
